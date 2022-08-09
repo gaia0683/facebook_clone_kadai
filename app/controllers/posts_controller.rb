@@ -10,12 +10,15 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post = Post.new(post_params)
-    if @post.save
-      redirect_to posts_path, notice: "ポストを投稿しました！"
-
-    else
+    @post = current_user.posts.build(post_params)
+    if params[:back]
       render :new
+    else
+      if @post.save
+        redirect_to posts_path, notice: "ポストを投稿しました！"
+      else
+        render :new
+      end
     end
   end
 
@@ -27,7 +30,6 @@ class PostsController < ApplicationController
   end
 
   def update
-
   end
 
   def destroy
@@ -35,10 +37,16 @@ class PostsController < ApplicationController
     redirect_to posts_path, notice: "ブログを削除しました！"
   end
 
+
+  def confirm
+    @post = current_user.posts.build(post_params)
+    render :new if @post.invalid?
+  end
+
   private
 
   def post_params
-    params.require(:blog).permit(:content)
+    params.require(:post).permit(:content, :picture, :pciture_cache)
   end
 
   def set_post

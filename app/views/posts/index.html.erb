@@ -4,19 +4,19 @@
   <tr>
     <th>名前</th>
     <th>内容</th>
-    <th>写真</th>
     </tr>
 
 
 <% @posts.each do |post| %>
   <tr>
-    <td><%= post.name %></td>
+    <td><%= post.user.name %></td>
     <td><%= post.content %>
-    <td><%= post.image %>
-    <td><%= link_to '詳細を確認する', post_path(post_id) %></td>
+    <td><%= link_to '詳細を確認する', post_path(post.id) %></td>
     <td><%= link_to 'ポストを編集する', edit_post_path(post.id), data: { confirm: '本当に編集していいですか？' } %>
     </td>
-    <td><%= link_to 'ポストを削除する', post_path(post_id), method :delete, data: { confirm: '本当に削除していいですか？' } %></td>
+    <td><%= link_to 'ポストを削除する', post_path(post.id), method: :delete, data: { confirm: '本当に削除していいですか？' } %></td>
   </tr>
 <% end %>
 </table>
+
+<%= link_to '新しくブログを投稿する', new_post_path %>
