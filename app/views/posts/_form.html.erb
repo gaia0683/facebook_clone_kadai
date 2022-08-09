@@ -17,11 +17,11 @@
   </div>
   <%= form.submit %>
 
-  <div class="image_field" class=>
+  <div class="image_field">
     <%= form.label :picture %>
     <%= form.file_field :picture %>
   </div>
 
 <% end %>
 
-<%= link_to "投稿一覧に戻る", posts_path %>
+<%= link_to "投稿一覧に戻る", posts_path, class: "btn btn-info" %>
