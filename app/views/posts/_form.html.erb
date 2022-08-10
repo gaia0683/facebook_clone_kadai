@@ -19,8 +19,11 @@
 
   <div class="image_field">
     <%= form.label :picture %>
+    <%= image_tag(@post.picture.url, style: 'width:200px;height:170px') if @post.picture && @post.picture.url %>
     <%= form.file_field :picture %>
   </div>
+
+  <%= form.submit %>
 
 <% end %>
 

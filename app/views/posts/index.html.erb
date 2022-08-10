@@ -4,6 +4,7 @@
   <tr>
     <th>名前</th>
     <th>内容</th>
+    <th>写真</th>
     </tr>
 
 
@@ -11,6 +12,7 @@
   <tr>
     <td><%= post.user.name %></td>
     <td><%= post.content %>
+    <td><%= image_tag post.picture.url, style:'width:400px;height:240px' if post.picture_url %></td>
     <td><%= link_to '詳細を確認する', post_path(post.id), class: "btn btn-secondary" %></td>
     <td><%= link_to 'ポストを編集する', edit_post_path(post.id), data: { confirm: '本当に編集していいですか？' }, class: "btn btn-dark" %>
     </td>
